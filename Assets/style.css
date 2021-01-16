@@ -1,0 +1,14 @@
+h1 {text-align: center;}
+h3 {text-align: center;}
+
+/* Card Styles */
+
+.card{  
+    border-radius: 4px 0 4px 0;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    height:300px;
+    overflow:scroll;
+    overflow-x:hidden;
+}
