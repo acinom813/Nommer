@@ -20,32 +20,25 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
+              <a class="navbar-brand" href="#"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Recipe Book</a>
+                    <a class="nav-link" href="cookbook.html">Recipe Book</a>
                 </ul>
               </div>
             </div>
-          </nav>
-            
-          <div class="container-fluid text-center">    
-            <div class="row content">
-              <div class="col-sm-2 sidenav">
-                <button>Random Recipe</button>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Ingredient" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </div>
-              <div class="col-sm-8 text-left"> 
+        </nav> 
+        
+        <div class="container">
+        
+            <header> 
                 <h1>Nommer</h1>
                 <h3>swipe right to eat good</h3>
                 <p></p>
@@ -61,6 +54,7 @@
                           <div class="recipe card">
                             <div class="card-body">
                               <h5 class="card-title">Recipe Card</h5>
+                              <img src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg" alt="Food" class="image">
                               <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium necessitatibus molestiae consequatur iure quia deserunt, similique sint sapiente est hic totam repellendus debitis aspernatur possimus blanditiis eaque labore voluptatibus a.</p>
                               <div class="card-header">
                                 Ingredients
@@ -111,52 +105,33 @@
 
                     <div class="row">
                         
-                      <div class="col-sm-4">                        
-                        <h6>Recipe</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      </div>
-                      <div class="col-sm-4"> 
-                        <h6>Food Picture</h6> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">                           
-                      </div>
-
                       
-                      <div class="col-sm-4">
-                        <div class="well">
-                            <h6>Nutritional Info</h6>
-                         <p>Some text..</p>
-                        </div>
-                        <div class="well">
-                         <p>Some text..</p>
-                        </div>
-                      </div>
-                    </div>
+            <div class="form">                   
+                <form class="form-inline my-2">
+                    <input class="form-control mr-sm-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Nom Nom</button>
+                </form>                   
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6 recipe">
+                    <!-- this is where the recipe card will go -->                    
                 </div>
-                <br>
-                  
-                <footer class="container-fluid text-center">
-                <p>Footer Text</p>
-                </footer>
+                <div class="col-sm-6 nutrition">
+                    <!-- this is where the nutrition card will go -->
+                </div>            
+            </div>
+            
+        </div>
 
-                      
-                      <div class="col-sm-4">
-                        <div class="well">
-                            <h6>Nutritional Info</h6>
-                         <p>Some text..</p>
-                        </div>
-                        <div class="well">
-                         <p>Some text..</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div><br>
+         <!-- JavaScript Link -->
+         <script src="./JavaScript/script.js"></script>
+                          
+        <footer class="container-fluid text-center">
+            <p>Project 1</p>
+        </footer>
 
-                  
-                  <footer class="container-fluid text-center">
-                    <p>Footer Text</p>
-                  </footer>
-          
-        <!-- JavaScript Link -->
-        <script src="./JavaScript/script.js"></script>
+        
+       
     </body>
 </html>
