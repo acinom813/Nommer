@@ -1,5 +1,25 @@
 
 
+
+/* Card Styles */
+
+.card{  
+    border-radius: 4px 0 4px 0;
+    font-size: 12px;
+    color:gray;
+    font-weight: bold;
+    padding: 5px;
+    height:300px;
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+.image{
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
 /* Cookbook */
 
 .navbar-brand {
