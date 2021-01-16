@@ -1,3 +1,21 @@
+
+h1 {text-align: center;}
+h3 {text-align: center;}
+
+/* Cookbook */
+
+.navbar-brand {
+    font-family: 'Teko', sans-serif;
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.nav-link {
+    font-family: 'Teko', sans-serif;
+    font-size: medium;
+    font-weight: 300; 
+}
+
 header {
     background-color: #3f708c;
     text-align: center;
@@ -16,4 +34,5 @@ footer {
     bottom: 0;
     left: 0;
 }
+
 
