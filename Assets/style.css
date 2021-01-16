@@ -1,6 +1,7 @@
 h1 {text-align: center;}
 h3 {text-align: center;}
 
+
 /* Card Styles */
 
 .card{  
@@ -12,3 +13,4 @@ h3 {text-align: center;}
     overflow:scroll;
     overflow-x:hidden;
 }
+
