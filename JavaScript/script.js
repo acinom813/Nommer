@@ -1,13 +1,20 @@
 // jQuery ready method
 $(document).ready(function() {
 
+    function renderMealCard(meal) {
+        console.log(meal);
+    }
+
     function getRandomMeal() {
         $.ajax({
-            url: "https://www.themealdb.com/api/json/v1/1/random.php",
-            method: "GET"
-        }).then(function(response) {
-            console.log(response.meals[0]);
-        });
+                url: "https://www.themealdb.com/api/json/v1/1/random.php",
+                method: "GET"
+            }).then(function(response) {
+
+                var randomMeal = response.meals[0];
+
+                renderMealCard(randomMeal);
+            });
     }
 
     function getMealByID(id) {
@@ -18,33 +25,23 @@ $(document).ready(function() {
             url: parsedURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response.meals[0]);
+            var foundMeal = response.meals[0];
+
+            renderMealCard(foundMeal);
         });
     }
 
-    $("#search-button").on("click", function() {
+    function getMealByIngredient(ingredient) {
 
-        // var userInput = $("#search-bar").val();
+        var parsedURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient;
 
-        // userInput.trim();
+        $.ajax({
+            url: parsedURL,
+            method: "GET"
+        }).then(function(response) {
+            var foundMeal = response.meals[0];
 
-        // if (userInput === "") {
-        //     getRandomMeal();
-        // }
-        // else {
-        //     get
-        // }
-
-        getRandomMeal();
-    });
-
-    $.ajax({
-        url: "https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast",
-        method: "GET"
-    }).then(function(response) {
-        console.log(response.meals);
-        console.log(response.meals[0]);
-        var mealID = response.meals[0].idMeal;
-        getMealByID(mealID);
-    });
+            renderMealCard(foundMeal);
+        });
+    }
 });
