@@ -1,2 +1,19 @@
-h1 {text-align: center;}
-h3 {text-align: center;}
+header {
+    background-color: #3f708c;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+}
+
+form {
+   margin: 0 auto;
+   width: 400px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
