@@ -1,6 +1,4 @@
 
-h1 {text-align: center;}
-h3 {text-align: center;}
 
 /* Cookbook */
 
@@ -16,17 +14,33 @@ h3 {text-align: center;}
     font-weight: 300; 
 }
 
+/* Home Page */
+
+nav {
+    font-family: 'Teko', sans-serif;
+    font-size: medium;
+    background-color: rgb(168, 188, 206);
+}
+
 header {
     background-color: #3f708c;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     color: white;
+    font-family: 'Teko', sans-serif;
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 form {
    margin: 0 auto;
    width: 400px;
+   font-family: 'Teko', sans-serif;
+   font-size: medium;
 }
 
 footer {
