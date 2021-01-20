@@ -1,8 +1,10 @@
 // jQuery ready method
 $(document).ready(function() {
 
+    // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
 
+        // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
 
         $("#meal-image").attr("src", meal.strMealThumb);
@@ -94,80 +96,114 @@ $(document).ready(function() {
         ingredientArray.push(ingredient);
         //==============================================================================
 
+        // Empties the ingredient list
         $("#ingredients-list").empty();
 
+        // Sets an index to be used for the ingredientArray
         var index = 0;
 
+        // Instances a variable which will be used later
         var ingredientEl = "";
         
+        // A while-loop that checks whether there is an ingredient at index 
         while (ingredientArray[index] != " ") {
 
+            // Sets the instanced variable from earlier to a new jQuery object
             ingredientEl = $("<li>").addClass("list-group-item");
 
+            // Sets the text of the jQuery object to the ingredient at index
             ingredientEl.text(ingredientArray[index]);
 
+            // Appends the jQuery object to the ingredient list
             $("#ingredients-list").append(ingredientEl);
 
+            // Increases index by 1
             index++;
         }
 
+        // Sets the link into the source button
         $("#recipe-link-button").attr("href", meal.strSource);
     }
 
+    // Function that performs an ajax call to get a random meal
     function getRandomMeal() {
+
+        // Ajax call to TheMealDB API for a random meal
         $.ajax({
                 url: "https://www.themealdb.com/api/json/v1/1/random.php",
                 method: "GET"
             }).then(function(response) {
 
+                // Gets the random meal out of the returned array
                 var randomMeal = response.meals[0];
 
+                // Runs the renderMealCard() method with the random meal
                 renderMealCard(randomMeal);
             });
     }
 
-    function getMealByID(id) {
-
-        var parsedURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
-
-        $.ajax({
-            url: parsedURL,
-            method: "GET"
-        }).then(function(response) {
-            var foundMeal = response.meals[0];
-
-            renderMealCard(foundMeal);
-        });
-    }
-
+    // Function that performs an ajax call to get a meal based on an ingredient
     function getMealByIngredient(ingredient) {
 
+        // Creates a url using the ingredient parameter
         var parsedURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient;
 
+        // Ajax call to TheMealDB API for a random meal that is filtered by an ingredient
         $.ajax({
             url: parsedURL,
             method: "GET"
         }).then(function(response) {
+
+            // Gets the filtered meal out of the returned array
             var foundMeal = response.meals[0];
 
+            // Runs the renderMealCard() method with the meal
             renderMealCard(foundMeal);
         });
     }
 
+    // Function that performs an ajax call to get a meal based on an ID
+    function getMealByID(id) {
+
+        // Creates a url using the id parameter
+        var parsedURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
+
+        // Ajax call to TheMealDB API for the meal with the given id
+        $.ajax({
+            url: parsedURL,
+            method: "GET"
+        }).then(function(response) {
+
+            // Gets the meal out of the returned array
+            var foundMeal = response.meals[0];
+
+            // Runs the renderMealCard() method with the meal
+            renderMealCard(foundMeal);
+        });
+    }
+
+    // Click listener for the submit button
     $("#submit-button").on("click", function(event) {
+
+        // Prevents reloading of webpage
         event.preventDefault();
 
+        // Gets the value of the ingredient input box
         var input = $("#ingredient-input").val();
 
-        if (input === ""){
-            console.log("Random");
+        // If-else-statement to check if the user gave any input
+        if (input.trim() === ""){
+
+            // Gets a random meal if there is no input
             getRandomMeal();
         }
         else {
-            console.log("By Ingredient");
+
+            // Gets a meal by ingredient if there is input
             getMealByIngredient(input);
         }
     });
 
+    // Gets a random meal when the page first loads
     getRandomMeal();
 });
