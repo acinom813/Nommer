@@ -94,6 +94,8 @@ $(document).ready(function() {
         ingredientArray.push(ingredient);
         //==============================================================================
 
+        $("#ingredients-list").empty();
+
         var index = 0;
 
         var ingredientEl = "";
@@ -110,8 +112,6 @@ $(document).ready(function() {
         }
 
         $("#recipe-link-button").attr("href", meal.strSource);
-
-        console.log(meal);
     }
 
     function getRandomMeal() {
@@ -153,6 +153,21 @@ $(document).ready(function() {
             renderMealCard(foundMeal);
         });
     }
+
+    $("#submit-button").on("click", function(event) {
+        event.preventDefault();
+
+        var input = $("#ingredient-input").val();
+
+        if (input === ""){
+            console.log("Random");
+            getRandomMeal();
+        }
+        else {
+            console.log("By Ingredient");
+            getMealByIngredient(input);
+        }
+    });
 
     getRandomMeal();
 });
