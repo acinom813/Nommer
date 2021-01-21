@@ -1,9 +1,8 @@
 // jQuery ready method
-$(document).ready(function() {
-
+var cookbookId = []
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
-
+        mealId = meal.idMeal;
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
 
@@ -207,3 +206,9 @@ $(document).ready(function() {
     // Gets a random meal when the page first loads
     getRandomMeal();
 });
+
+
+//Adds saved recipes to the localStorage
+
+
+//Click listener for the save recipe button
