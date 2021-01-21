@@ -1,8 +1,20 @@
 // jQuery ready method
-var cookbookId = []
+$(document).ready(function() {
+
+    // Creates the recipeIdArray in local storage if it does not currently exist
+    if (!localStorage.getItem("recipeIdArray")) {
+        localStorage.setItem("recipeIdArray", JSON.stringify([]));
+    }
+
+    // Instances a variable to contain the current meal id
+    var mealID = "";
+
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
-        mealId = meal.idMeal;
+
+        // Sets the meal id into the mealID variable
+        mealID = meal.idMeal;
+
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
 
@@ -136,6 +148,8 @@ var cookbookId = []
                 // Gets the random meal out of the returned array
                 var randomMeal = response.meals[0];
 
+                console.log(randomMeal);
+
                 // Runs the renderMealCard() method with the random meal
                 renderMealCard(randomMeal);
             });
@@ -181,6 +195,20 @@ var cookbookId = []
         });
     }
 
+    // function getRandomRestaurant(city) {
+
+    //     var parsedURL = "https://developers.zomato.com/api/v2.1/locations?query=" + city;
+
+    //     $.ajax({
+    //         url: parsedURL,
+    //         method: "GET"
+    //     }).then(function(response) {
+
+    //         console.log(response);
+
+    //     });
+    //     }
+
     // Click listener for the submit button
     $("#submit-button").on("click", function(event) {
 
@@ -203,12 +231,26 @@ var cookbookId = []
         }
     });
 
+    // Click listener for the save recipe button
+    $("#save-recipe").on("click", function() {
+
+        // Gets the recipe id array from local storage
+        var recipeIdArray = JSON.parse(localStorage.getItem("recipeIdArray"));
+
+        // Checks whether the id array already has the current meal id
+        // Runs if false
+        if (!recipeIdArray.includes(mealID)) {
+
+            // Pushes the current id into the array
+            recipeIdArray.push(mealID);
+
+            // Sets the altered array back into local storage
+            localStorage.setItem("recipeIdArray", JSON.stringify(recipeIdArray));
+        }
+    });
+
     // Gets a random meal when the page first loads
     getRandomMeal();
+
+    // getRandomRestaurant("Atlanta");
 });
-
-
-//Adds saved recipes to the localStorage
-
-
-//Click listener for the save recipe button
