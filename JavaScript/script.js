@@ -148,8 +148,6 @@ $(document).ready(function() {
                 // Gets the random meal out of the returned array
                 var randomMeal = response.meals[0];
 
-                console.log(randomMeal);
-
                 // Runs the renderMealCard() method with the random meal
                 renderMealCard(randomMeal);
             });
@@ -170,8 +168,11 @@ $(document).ready(function() {
             // Gets the filtered meal out of the returned array
             var foundMeal = response.meals[0];
 
+            // Gets the id from the filtered meal
+            var id = foundMeal.idMeal;
+
             // Runs the renderMealCard() method with the meal
-            renderMealCard(foundMeal);
+            getMealByID(id);
         });
     }
 
@@ -201,6 +202,8 @@ $(document).ready(function() {
 
         $.ajax({
             url: parsedURL,
+            crossDomain: true,
+            headers: {"userKey": "b0e4dfc37166620144ab154a1dd7d9c9"},
             method: "GET"
         }).then(function(response) {
 
