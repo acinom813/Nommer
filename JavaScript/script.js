@@ -1,8 +1,19 @@
 // jQuery ready method
 $(document).ready(function() {
 
+    // Creates the recipeIdArray in local storage if it does not currently exist
+    if (!localStorage.getItem("recipeIdArray")) {
+        localStorage.setItem("recipeIdArray", JSON.stringify([]));
+    }
+
+    // Instances a variable to contain the current meal id
+    var mealID = "";
+
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
+
+        // Sets the meal id into the mealID variable
+        mealID = meal.idMeal;
 
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
@@ -157,8 +168,11 @@ $(document).ready(function() {
             // Gets the filtered meal out of the returned array
             var foundMeal = response.meals[0];
 
+            // Gets the id from the filtered meal
+            var id = foundMeal.idMeal;
+
             // Runs the renderMealCard() method with the meal
-            renderMealCard(foundMeal);
+            getMealByID(id);
         });
     }
 
@@ -182,28 +196,73 @@ $(document).ready(function() {
         });
     }
 
+    function getRandomRestaurant(city) {
+
+        var parsedURL = "https://developers.zomato.com/api/v2.1/locations?query=" + city;
+
+        $.ajax({
+            url: parsedURL,
+            crossDomain: true,
+            headers: {"userKey": "b0e4dfc37166620144ab154a1dd7d9c9"},
+            method: "GET"
+        }).then(function(response) {
+
+            console.log(response);
+
+        });
+    }
+
+    var btnClicked = false;
+
     // Click listener for the submit button
     $("#submit-button").on("click", function(event) {
 
         // Prevents reloading of webpage
         event.preventDefault();
 
-        // Gets the value of the ingredient input box
-        var input = $("#ingredient-input").val();
+        if (!btnClicked) {
 
-        // If-else-statement to check if the user gave any input
-        if (input.trim() === ""){
+            btnClicked = true;
 
-            // Gets a random meal if there is no input
-            getRandomMeal();
+            // Gets the value of the ingredient input box
+            var input = $("#ingredient-input").val();
+
+            // If-else-statement to check if the user gave any input
+            if (input.trim() === ""){
+
+                // Gets a random meal if there is no input
+                getRandomMeal();
+            }
+            else {
+
+                // Gets a meal by ingredient if there is input
+                getMealByIngredient(input);
+            }
         }
-        else {
 
-            // Gets a meal by ingredient if there is input
-            getMealByIngredient(input);
+        btnClicked = false;
+    });
+
+    // Click listener for the save recipe button
+    $("#save-recipe").on("click", function() {
+
+        // Gets the recipe id array from local storage
+        var recipeIdArray = JSON.parse(localStorage.getItem("recipeIdArray"));
+
+        // Checks whether the id array already has the current meal id
+        // Runs if false
+        if (!recipeIdArray.includes(mealID)) {
+
+            // Pushes the current id into the array
+            recipeIdArray.push(mealID);
+
+            // Sets the altered array back into local storage
+            localStorage.setItem("recipeIdArray", JSON.stringify(recipeIdArray));
         }
     });
 
     // Gets a random meal when the page first loads
     getRandomMeal();
+
+    getRandomRestaurant("Atlanta");
 });
