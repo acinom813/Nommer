@@ -207,7 +207,7 @@ $(document).ready(function() {
     //         console.log(response);
 
     //     });
-    }
+    //     }
 
     // Click listener for the submit button
     $("#submit-button").on("click", function(event) {
