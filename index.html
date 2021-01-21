@@ -1,73 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Nommer</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>Nommer</title>
 
-        <!-- Bootstrap Link -->
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-              crossorigin="anonymous">
+    <!-- Bootstrap Link -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous">
 
-              <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+          <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"     
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
+            crossorigin="anonymous"></script>
 
-        <!-- CSS Link -->
-        <link rel="stylesheet" href="./assets/style.css">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="./assets/style.css">
 
-        <!-- jQuery Link -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
+    <!-- jQuery Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
 
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="cookbook.html">Recipe Book</a>
-                </ul>
-              </div>
-            </div>
-        </nav> 
-        
-        <div class="container-fluid">
-        
-            <header> 
-                <h1>Nommer</h1>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">NOMMER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cookbook.html">Recipe Book</a>
+          </ul>
+        </div>
+      </div>
+    </nav> 
+      
+    <div class="container-fluid">
 
-                <h3>nom nom - eat good</h3>
-                <br> 
-                <p>Not sure what to eat?</p>
-                <p>Hit Nom Nom and we will pick for you, or add an ingredient for a more tailored suggestion!</p>               
-            </header> 
+      <header> 
+        <h1>nom nom - eat good</h1>
+        <br> 
+        <h4>Nommer can help you with one of the hardest decicions of your day</h4>
+        <br>
+        <p>Not sure what to eat?
+          <br>Hit Nom Nom and we will pick for you
+          <br>Add an ingredient for a recipe or add city for a restaurant 
+          <br>If you like what you see, save it to the cookbook to use again later</p>                    
+      </header> 
 
-            <div class="form">                   
-              <form class="form-inline my-2">
-                  <input id="ingredient-input" class="form-control mr-sm-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
-                  <button id="submit-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Nom Nom</button>
-              </form>                   
-          </div>
-                
-                    <!-- Begin Cards -->
+      <div class="form">                   
+        <form class="form-inline my-2">
+            <input id="ingredient-input" class="form-control mr-sm-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
+            <button id="submit-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Nom Nom</button>
+        </form>                   
+      </div>
 
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="recipe card text-center">
-                            <div class="card-body">
+                <!-- Begin Cards -->
 
-                              <h5 id="recipe-title" class="card-title"></h5>
-                              <img id="meal-image" src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg" alt="Food" class="image">
-                              <p id="recipe-instructions" class="card-text"></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="recipe card text-center">
+              <div class="card-body">
+
+
+                <h5 id="recipe-title" class="card-title"></h5>
+                <img id="meal-image" src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg" alt="Food" class="image">
+                <p id="recipe-instructions" class="card-text"></p>
 
                               <div class="card-header">
                                 Ingredients
@@ -106,17 +111,53 @@
                       </div>
                     </div>
 
-                    <!-- End Cards -->
+
+                <div class="card-header">
+                  Ingredients
+                </div>
+                <ul id="ingredients-list" class="list-group list-group-flush">
+                </ul>
+                <a id="recipe-link-button" target="_blank" class="btn btn-primary">Recipe Source</a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-6">
+            <div class="recipe card text-center">
+              <div class="card-body">
+                <h5 class="card-title">Restaurant</h5>
+                <img src="https://media.istockphoto.com/photos/two-empty-wine-glasses-sitting-in-a-restaurant-on-a-warm-sunny-picture-id1018141890?k=6&m=1018141890&s=612x612&w=0&h=_OmlYECOxfO-VHY3eIzuJSPRXUXiFbeHHp3RUZGQoSQ=" alt="Restaurant" class="image">
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium necessitatibus molestiae consequatur iure quia deserunt, similique sint sapiente est hic totam repellendus debitis aspernatur possimus blanditiis eaque labore voluptatibus a.</p>
+                <div class="card-header">
+                  Restaurant Name
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-         <!-- JavaScript Link -->
-         <script src="./JavaScript/script.js"></script>
-                          
-        <footer class="container-fluid text-center">
-            <p>&#169 Copyright Group 3</p>
-        </footer>
+                <!-- End Cards -->
+    </div>
 
-        
-       
-    </body>
+        <!-- JavaScript Link -->
+    <script src="./JavaScript/script.js"></script>
+                        
+    <footer class="container-fluid text-center">
+        <p>&#169 Copyright Group 3</p>
+    </footer>      
+      
+  </body>
+
 </html>
