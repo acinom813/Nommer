@@ -1,6 +1,6 @@
 # Nommer: Random Food Generator 
 
-UNC Bootcamp group prroject
+UNC Bootcamp group project
 
 ### Assignment:
 
