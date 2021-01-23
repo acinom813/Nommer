@@ -16,7 +16,7 @@
             crossorigin="anonymous"></script>
 
     <!-- CSS Link -->
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./Assets/style.css">
 
     <!-- jQuery Link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -56,8 +56,18 @@
 
       <div class="form">                   
         <form class="form-inline my-2">
-            <input id="ingredient-input" class="form-control mr-lg-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
-            <button id="submit-button" class="btn btn-outline-success my-2 my-lg-0" type="submit">Nom Nom</button>
+            <label for="ingredient-input">Try searching for a recipe</label>
+            <input id="ingredient-input" class="form-control mr-sm-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
+            <button id="recipe-submit-button" class="btn btn-outline-success my-2 my-sm-0">Nom Nom</button>
+        </form>                   
+      </div>
+
+      <div class="form">                   
+        <form class="form-inline my-2">
+            <label for="city-input">Or search for a restaurant</label>
+            <input id="city-input" class="form-control mr-sm-5" type="search" placeholder="City" aria-label="Search">
+            <button id="restaurant-submit-button" class="btn btn-outline-success my-2 my-sm-0">Nom Nom</button>
+            <p id="error-text"></p>
         </form>                   
       </div>
 
