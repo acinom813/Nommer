@@ -1,6 +1,8 @@
 // jQuery ready method
 $(document).ready(function() {
 
+    apiKeyZomato = "b0e4dfc37166620144ab154a1dd7d9c9";
+
     // Creates the recipeIdArray in local storage if it does not currently exist
     if (!localStorage.getItem("recipeIdArray")) {
         localStorage.setItem("recipeIdArray", JSON.stringify([]));
@@ -196,19 +198,96 @@ $(document).ready(function() {
         });
     }
 
+    function getRestaurant(cityID, cityLat, cityLon, offset) {
+        var parsedURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&start=" + offset + "&count=1&lat=" + cityLat + "&lon=" + cityLon;
+
+        $.ajax({
+            method: "GET",
+            crossDomain: true,
+            url: parsedURL,
+            dataType: "json",
+            async: true,
+            headers: {
+                "user-key": apiKeyZomato
+            }
+        }).then(function(response) {
+
+            console.log(response);
+
+            var restaurant = response.restaurants[0].restaurant;
+
+            var name = restaurant.name;
+            var address = restaurant.location.address;
+            var priceRange = restaurant.price_range;
+            var cuisineType = restaurant.cuisines;
+            var rating = restaurant.user_rating.aggregate_rating;
+
+            console.log(name);
+            console.log(address);
+            console.log(priceRange);
+            console.log(cuisineType);
+            console.log(rating);
+        });
+    }
+
+    function getMaxOffset(cityID, cityLat, cityLon) {
+        
+        var parsedURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&count=0&lat=" + cityLat + "&lon=" + cityLon;
+
+        $.ajax({
+            method: "GET",
+            crossDomain: true,
+            url: parsedURL,
+            dataType: "json",
+            async: true,
+            headers: {
+                "user-key": apiKeyZomato
+            }
+        }).then(function(response) {
+
+            var foundResults = response.results_found;
+
+            var maxOffset = 0;
+
+            if (foundResults > 99) {
+                maxOffset = 100;
+            }
+            else {
+                maxOffset = foundResults;
+            }
+
+            var actualOffset = Math.floor(Math.random() * maxOffset);
+
+            getRestaurant(cityID, cityLat, cityLon, actualOffset);
+
+            console.log(response);
+        });
+    }
+
     function getRandomRestaurant(city) {
 
         var parsedURL = "https://developers.zomato.com/api/v2.1/locations?query=" + city;
 
         $.ajax({
-            url: parsedURL,
+            method: "GET",
             crossDomain: true,
-            headers: {"userKey": "b0e4dfc37166620144ab154a1dd7d9c9"},
-            method: "GET"
+            url: parsedURL,
+            dataType: "json",
+            async: true,
+            headers: {
+                "user-key": apiKeyZomato
+            }
         }).then(function(response) {
+
+            var locationID = response.location_suggestions[0].city_id;
+
+            var locationLat = response.location_suggestions[0].latitude;
+
+            var locationLon = response.location_suggestions[0].longitude;
 
             console.log(response);
 
+            getMaxOffset(locationID, locationLat, locationLon);
         });
     }
 
