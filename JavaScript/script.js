@@ -1,7 +1,7 @@
-// jQuery ready method
 // jQuery ready method
 $(document).ready(function() {
 
+    // Api key for Zomato API
     apiKeyZomato = "b0e4dfc37166620144ab154a1dd7d9c9";
 
     // Creates the recipeIdArray in local storage if it does not currently exist
@@ -200,6 +200,7 @@ $(document).ready(function() {
     }
 
     function getRestaurant(cityID, cityLat, cityLon, offset) {
+
         var parsedURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&start=" + offset + "&count=1&lat=" + cityLat + "&lon=" + cityLon;
 
         $.ajax({
@@ -260,8 +261,6 @@ $(document).ready(function() {
             var actualOffset = Math.floor(Math.random() * maxOffset);
 
             getRestaurant(cityID, cityLat, cityLon, actualOffset);
-
-            console.log(response);
         });
     }
 
@@ -286,8 +285,6 @@ $(document).ready(function() {
 
             var locationLon = response.location_suggestions[0].longitude;
 
-            console.log(response);
-
             getMaxOffset(locationID, locationLat, locationLon);
         });
     }
@@ -295,7 +292,7 @@ $(document).ready(function() {
     var btnClicked = false;
 
     // Click listener for the submit button
-    $("#submit-button").on("click", function(event) {
+    $("#recipe-submit-button").on("click", function(event) {
 
         // Prevents reloading of webpage
         event.preventDefault();
@@ -323,8 +320,6 @@ $(document).ready(function() {
         btnClicked = false;
     });
 
-    //Establishing a localStorage for the saved recipes
-
     // Click listener for the save recipe button
     $("#save-recipe").on("click", function() {
 
@@ -345,11 +340,25 @@ $(document).ready(function() {
            
         }
     });
-    
-    
 
-    // Gets a random meal when the page first loads
-    getRandomMeal();
+    $("#restaurant-submit-button").on("click", function(event) {
 
-    getRandomRestaurant("Atlanta");
+        event.preventDefault();
+
+        $("#error-text").empty();
+
+        var input = $("#city-input").val();
+
+        // If-else-statement to check if the user gave any input
+        if (input.trim() === ""){
+
+            // Gets a random meal if there is no input
+            $("#error-text").text("Please search for a city");
+        }
+        else {
+
+            // Attempts to get a random restaurant using user input
+            getRandomRestaurant(input);
+        }
+    });
 });
