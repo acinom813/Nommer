@@ -8,8 +8,10 @@ Working as team, build a web application from scratch using at least two server-
 
 ### User Story:
 
-AS A hungry person who doesn't know what to eat and doesn't like making decisions 
+AS A hungry person who doesn't know what to eat and doesn't like making decisions
+
 I WANT to generate a random recipe and restaurant 
+
 SO THAT I can choose whether to cook that recipe or eat out at the restaurant to satiate my hunger
 
 ### Deployed Link:
