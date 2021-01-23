@@ -400,4 +400,7 @@ $(document).ready(function() {
             getRandomRestaurant(input);
         }
     });
+
+    // One random meal to fill in the recipe card
+    getRandomMeal();
 });
