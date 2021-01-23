@@ -16,7 +16,7 @@ SO THAT I can choose whether to cook that recipe or eat out at the restaurant to
 
 ### Deployed Link:
 
-https:
+https://acinom813.github.io/Project-1/index.html
 
 ### Screenshots of Webpage: 
 
