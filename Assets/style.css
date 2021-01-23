@@ -8,11 +8,22 @@
     margin-right: auto;
 }
 
+.card-header{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.restaurant-text{
+    font-weight: bold;
+    line-height: 1 ;
+    margin-top: 0 ;
+    margin-bottom: 0 ;
+}
+
 .card{  
     border-radius: 4px 0 4px 0;
     font-size: 12px;
     color:gray;
-    font-weight: bold;
     padding: 5px;
     height:600px;
     overflow:scroll;
@@ -23,6 +34,7 @@
     width: 100%;
     max-width: 250px;
     height: auto;
+    margin: 30px;
 }
 
 /* Cookbook */

@@ -222,12 +222,38 @@ $(document).ready(function() {
             var priceRange = restaurant.price_range;
             var cuisineType = restaurant.cuisines;
             var rating = restaurant.user_rating.aggregate_rating;
+            var imageLink = restaurant.featured_image;
+            var zomatoLink = restaurant.url;
 
             console.log(name);
             console.log(address);
             console.log(priceRange);
             console.log(cuisineType);
             console.log(rating);
+            console.log(imageLink);
+            console.log(zomatoLink)
+
+            var priceDollarSign = "";
+            for (var i = 0; i < priceRange; i++) {
+            priceDollarSign = priceDollarSign + "$";}
+
+
+
+            // Sets the restaurant name, address, price range, cuisine, and rating to their proper elements
+            $("#restaurant-name").text(name);
+
+            $("#restaurant-address").text(address);
+
+            $("#restaurant-price").text(priceDollarSign);
+
+            $("#cuisine-type").text(cuisineType);
+
+            $("#restaurant-rating").text(rating);
+
+            $("#restaurant-image").attr("src", imageLink);
+
+            $("#restaurant-link").attr("href", zomatoLink);
+
         });
     }
 
@@ -352,4 +378,5 @@ $(document).ready(function() {
     getRandomMeal();
 
     getRandomRestaurant("Atlanta");
+
 });
