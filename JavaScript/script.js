@@ -1,3 +1,4 @@
+// jQuery ready method
 // jQuery ready method
 $(document).ready(function() {
 
