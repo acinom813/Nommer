@@ -322,23 +322,30 @@ $(document).ready(function() {
         btnClicked = false;
     });
 
+    //Establishing a localStorage for the saved recipes
+
     // Click listener for the save recipe button
     $("#save-recipe").on("click", function() {
 
-        // Gets the recipe id array from local storage
-        var recipeIdArray = JSON.parse(localStorage.getItem("recipeIdArray"));
+        // Gets the recipe id array from localStorage
+        var recipeIdArray = localStorage.getItem("recipeIdArray");
+        var parsedArray = JSON.parse(recipeIdArray);
 
         // Checks whether the id array already has the current meal id
         // Runs if false
-        if (!recipeIdArray.includes(mealID)) {
+        if (!parsedArray.includes(mealID)) {
 
             // Pushes the current id into the array
-            recipeIdArray.push(mealID);
+            parsedArray.push(mealID);
 
             // Sets the altered array back into local storage
-            localStorage.setItem("recipeIdArray", JSON.stringify(recipeIdArray));
+            var stringifiedArray = JSON.stringify(parsedArray);
+            localStorage.setItem("recipeIdArray", stringifiedArray);
+           
         }
     });
+    
+    
 
     // Gets a random meal when the page first loads
     getRandomMeal();
