@@ -218,11 +218,6 @@ $(document).ready(function() {
             }
         }).then(function(response) {
 
-            // DELETE LATER
-            //=============================
-            console.log(response);
-            //=============================
-
             // Gets restaurant object out of array
             var restaurant = response.restaurants[0].restaurant;
 
@@ -235,20 +230,15 @@ $(document).ready(function() {
             var rating = restaurant.user_rating.aggregate_rating;
             var imageLink = restaurant.featured_image;
             var zomatoLink = restaurant.url;
+            //=============================================================
 
-            // DELETE LATER
-            //=============================
-            console.log(name);
-            console.log(address);
-            console.log(priceRange);
-            console.log(cuisineType);
-            console.log(rating);
             console.log(imageLink);
-            console.log(zomatoLink)
 
             var priceDollarSign = "";
+
             for (var i = 0; i < priceRange; i++) {
-            priceDollarSign = priceDollarSign + "$";}
+                priceDollarSign = priceDollarSign + "$";
+            }
 
 
 
@@ -266,7 +256,6 @@ $(document).ready(function() {
             $("#restaurant-image").attr("src", imageLink);
 
             $("#restaurant-link").attr("href", zomatoLink);
-
         });
     }
 
