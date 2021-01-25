@@ -21,8 +21,9 @@ https://acinom813.github.io/Nommer/
 ### Screenshots of Webpage: 
 
 ![Nommer](/Assets/images/screenshot.PNG)
+![Recipe Book](/Assets/images/screenshot2.PNG)
 
-### Credits
+### Credits:
 
 https://www.themealdb.com/api.php
 
