@@ -1,7 +1,7 @@
-// jQuery ready method
 // jQuery ready method
 $(document).ready(function() {
 
+    // Api key for Zomato API
     apiKeyZomato = "b0e4dfc37166620144ab154a1dd7d9c9";
 
     // Creates the recipeIdArray in local storage if it does not currently exist
@@ -206,9 +206,14 @@ $(document).ready(function() {
         });
     }
 
+    /* Function to get the restaurant details.
+       Third and final step in getting a random restaurant. */
     function getRestaurant(cityID, cityLat, cityLon, offset) {
+
+        // Parses url using parameters. Count=1 ensures that we only get one restaurant back.
         var parsedURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&start=" + offset + "&count=1&lat=" + cityLat + "&lon=" + cityLon;
 
+        // Ajax call to Zomato API for the search method
         $.ajax({
             method: "GET",
             crossDomain: true,
@@ -220,28 +225,66 @@ $(document).ready(function() {
             }
         }).then(function(response) {
 
+            // DELETE LATER
+            //=============================
             console.log(response);
+            //=============================
 
+            // Gets restaurant object out of array
             var restaurant = response.restaurants[0].restaurant;
 
+            // Gets relevant restaurant information from object
+            //=============================================================
             var name = restaurant.name;
             var address = restaurant.location.address;
             var priceRange = restaurant.price_range;
             var cuisineType = restaurant.cuisines;
             var rating = restaurant.user_rating.aggregate_rating;
+            var imageLink = restaurant.featured_image;
+            var zomatoLink = restaurant.url;
 
+            // DELETE LATER
+            //=============================
             console.log(name);
             console.log(address);
             console.log(priceRange);
             console.log(cuisineType);
             console.log(rating);
+            console.log(imageLink);
+            console.log(zomatoLink)
+
+            var priceDollarSign = "";
+            for (var i = 0; i < priceRange; i++) {
+            priceDollarSign = priceDollarSign + "$";}
+
+
+
+            // Sets the restaurant name, address, price range, cuisine, and rating to their proper elements
+            $("#restaurant-name").text(name);
+
+            $("#restaurant-address").text(address);
+
+            $("#restaurant-price").text(priceDollarSign);
+
+            $("#cuisine-type").text(cuisineType);
+
+            $("#restaurant-rating").text(rating);
+
+            $("#restaurant-image").attr("src", imageLink);
+
+            $("#restaurant-link").attr("href", zomatoLink);
+
         });
     }
 
+    /* Function to get the maximum offset.
+       Second step in getting a random restaurant. */
     function getMaxOffset(cityID, cityLat, cityLon) {
         
+        // Parses a url using parameters. Count=0 ensures that the call is as quick as possible.
         var parsedURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&count=0&lat=" + cityLat + "&lon=" + cityLon;
 
+        // Ajax call to Zomato API for the search method
         $.ajax({
             method: "GET",
             crossDomain: true,
@@ -253,29 +296,41 @@ $(document).ready(function() {
             }
         }).then(function(response) {
 
+            // Gets the total number of found results
             var foundResults = response.results_found;
 
+            // Instances a variable
             var maxOffset = 0;
 
+            // The maximum allowed offset is 99, so if foundResults is greater than that, maxOffset will default to 100.
             if (foundResults > 99) {
+
+                // maxOffset is 100 because we will be rounding down, so the actual maximum is 99.
                 maxOffset = 100;
             }
             else {
+
+                // Sets maxOffset to foundResults to ensure that any random offset is still within the limits.
                 maxOffset = foundResults;
             }
 
+            // Randomly selects a number from 0 to maxOffset, excluding maxOffset
             var actualOffset = Math.floor(Math.random() * maxOffset);
 
+            // Runs getRestaurant() method with parameters and actualOffset
             getRestaurant(cityID, cityLat, cityLon, actualOffset);
-
-            console.log(response);
         });
     }
 
+    /* Function to get a random restaurant.
+       Several ajax calls are required, so this is just the first step.
+       In this first step, the city id, latitude, and longitude are obtained.  */
     function getRandomRestaurant(city) {
 
+        // Uses the parameter to create the url
         var parsedURL = "https://developers.zomato.com/api/v2.1/locations?query=" + city;
 
+        // Ajax call to Zomato API for city details
         $.ajax({
             method: "GET",
             crossDomain: true,
@@ -287,14 +342,16 @@ $(document).ready(function() {
             }
         }).then(function(response) {
 
+            // Stores the city id in a variable
             var locationID = response.location_suggestions[0].city_id;
 
+            // Stores the city latitude in a variable
             var locationLat = response.location_suggestions[0].latitude;
 
+            // Stores the city longitude in a variable
             var locationLon = response.location_suggestions[0].longitude;
 
-            console.log(response);
-
+            // Runs the getMaxOffset() method with stored info
             getMaxOffset(locationID, locationLat, locationLon);
         });
     }
@@ -302,7 +359,7 @@ $(document).ready(function() {
     var btnClicked = false;
 
     // Click listener for the submit button
-    $("#submit-button").on("click", function(event) {
+    $("#recipe-submit-button").on("click", function(event) {
 
         // Prevents reloading of webpage
         event.preventDefault();
@@ -330,8 +387,6 @@ $(document).ready(function() {
         btnClicked = false;
     });
 
-    //Establishing a localStorage for the saved recipes
-
     // Click listener for the save recipe button
     $("#save-recipe").on("click", function () {
 console.log("hello")
@@ -341,6 +396,7 @@ console.log("hello")
 
         // Checks whether the id array already has the current meal id
         // Runs if false
+
         //for (var i = 0; i < parsedArray.length; i++) {
             //if (parsedArray[i].id !== mealID) {
       var newRecipe = {
@@ -358,12 +414,34 @@ console.log("hello")
                 localStorage.setItem("recipeIdArray", stringifiedArray);
            // }
        // }
+
     });
-    
-    
 
-    // Gets a random meal when the page first loads
+    // Click listener for the restaurant submit button
+    $("#restaurant-submit-button").on("click", function(event) {
+
+        // Prevents refreshing on click
+        event.preventDefault();
+
+        // Empties the error text element
+        $("#error-text").empty();
+
+        // Gets the user input from the city-input element
+        var input = $("#city-input").val();
+
+        // If-else-statement to check if the user gave any input
+        if (input.trim() === ""){
+
+            // Displays error text if the user fails to enter a city
+            $("#error-text").text("Please enter a city");
+        }
+        else {
+
+            // Attempts to get a random restaurant using user input
+            getRandomRestaurant(input);
+        }
+    });
+
+    // One random meal to fill in the recipe card
     getRandomMeal();
-
-    getRandomRestaurant("Atlanta");
 });

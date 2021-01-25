@@ -16,7 +16,7 @@
             crossorigin="anonymous"></script>
 
     <!-- CSS Link -->
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./Assets/style.css">
 
     <!-- jQuery Link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -56,8 +56,18 @@
 
       <div class="form">                   
         <form class="form-inline my-2">
+            <label for="ingredient-input">Try searching for a recipe</label>
             <input id="ingredient-input" class="form-control mr-sm-5" type="search" placeholder="Ingredient (Optional)" aria-label="Search">
-            <button id="submit-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Nom Nom</button>
+            <button id="recipe-submit-button" class="btn btn-outline-success my-2 my-sm-0">Nom Nom</button>
+        </form>                   
+      </div>
+
+      <div class="form">                   
+        <form class="form-inline my-2">
+            <label for="city-input">Or search for a restaurant</label>
+            <input id="city-input" class="form-control mr-sm-5" type="search" placeholder="City" aria-label="Search">
+            <button id="restaurant-submit-button" class="btn btn-outline-success my-2 my-sm-0">Nom Nom</button>
+            <p id="error-text"></p>
         </form>                   
       </div>
 
@@ -65,11 +75,11 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <div class="recipe card text-center">
               <div class="card-body">
                 <h5 id="recipe-title" class="card-title"></h5>
-                <img id="meal-image" src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg" alt="Food" class="image">
+                <img id="meal-image" alt="Food" class="image">
                 <p id="recipe-instructions" class="card-text"></p>
                 
                 <div class="card-header">
@@ -82,27 +92,28 @@
               </div>
             </div>
           </div>
+
+          <!--Restaurant Card-->
       
-          <div class="col-md-6">
-            <div class="recipe card text-center">
+          <div class="col-lg-6">
+            <div class="restaurant card text-center">
               <div class="card-body">
-                <h5 class="card-title">Restaurant</h5>
-                <img src="https://media.istockphoto.com/photos/two-empty-wine-glasses-sitting-in-a-restaurant-on-a-warm-sunny-picture-id1018141890?k=6&m=1018141890&s=612x612&w=0&h=_OmlYECOxfO-VHY3eIzuJSPRXUXiFbeHHp3RUZGQoSQ=" alt="Restaurant" class="image">
-                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium necessitatibus molestiae consequatur iure quia deserunt, similique sint sapiente est hic totam repellendus debitis aspernatur possimus blanditiis eaque labore voluptatibus a.</p>
+                <h5 id="restaurant-name" class="card-title"></h5>
+                <img id="restaurant-image" alt="Restaurant" class="image">
                 <div class="card-header">
-                  Restaurant Name
+                  Restaurant Details
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <p class="restaurant-text">Cuisine Type:</p>
+                  <li class="list-group-item" id="cuisine-type"></li>
+                  <p class="restaurant-text">Rating:</p>
+                  <li class="list-group-item" id="restaurant-rating"></li>
+                  <p class="restaurant-text">Price:</p>
+                  <li class="list-group-item" id="restaurant-price"></li>
+                  <p class="restaurant-text">Address:</p>
+                  <li class="list-group-item" id="restaurant-address"></li>
                 </ul>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a id="restaurant-link" target="_blank" class="btn btn-primary">More Info</a>
               </div>
             </div>
           </div>
