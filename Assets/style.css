@@ -25,8 +25,8 @@
     font-size: 12px;
     color:gray;
     padding: 5px;
-    height:600px;
-    overflow:scroll;
+    height:300px;
+    overflow-y:scroll;
     overflow-x:hidden;
 }
 
@@ -54,6 +54,17 @@ a.navbar-brand {
     font-family: 'Teko', sans-serif;
     font-size: medium;
     font-weight: 300; 
+}
+ 
+.saved-card{
+border-radius: 4px 0 4px 0;
+    font-size: 12px;
+    color:gray;
+    font-weight: bold;
+    padding: 5px;
+    height:600px;
+    overflow:scroll;
+    overflow-x:hidden;
 }
 
 /* Home Page */

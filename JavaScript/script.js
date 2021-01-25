@@ -9,14 +9,21 @@ $(document).ready(function() {
         localStorage.setItem("recipeIdArray", JSON.stringify([]));
     }
 
-    // Instances a variable to contain the current meal id
+    // Instances a variable to contain the current meal id and meal name
     var mealID = "";
+    var mealName = "";
+    var image= "";
+    var instruction ="";
 
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
 
         // Sets the meal id into the mealID variable
         mealID = meal.idMeal;
+        mealName= meal.strMeal;
+        image = meal.strMealThumb;
+        instruction = meal.strInstructions;
+
 
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
@@ -381,23 +388,33 @@ $(document).ready(function() {
     });
 
     // Click listener for the save recipe button
-    $("#save-recipe").on("click", function() {
-
+    $("#save-recipe").on("click", function () {
+console.log("hello")
         // Gets the recipe id array from localStorage
-        var recipeIdArray = localStorage.getItem("recipeIdArray");
+        var recipeIdArray = localStorage.getItem("recipeIdArray") || "[]";
         var parsedArray = JSON.parse(recipeIdArray);
 
         // Checks whether the id array already has the current meal id
         // Runs if false
-        if (!parsedArray.includes(mealID)) {
 
-            // Pushes the current id into the array
-            parsedArray.push(mealID);
+        //for (var i = 0; i < parsedArray.length; i++) {
+            //if (parsedArray[i].id !== mealID) {
+      var newRecipe = {
+          id: mealID,
+          name: mealName,
+          image: image,
+          instruction: instruction
+      }
+      console.log(mealID)
+                // Pushes the current id into the array
+                parsedArray.push(newRecipe);
 
-            // Sets the altered array back into local storage
-            var stringifiedArray = JSON.stringify(parsedArray);
-            localStorage.setItem("recipeIdArray", stringifiedArray);
-        }
+                // Sets the altered array back into local storage
+                var stringifiedArray = JSON.stringify(parsedArray);
+                localStorage.setItem("recipeIdArray", stringifiedArray);
+           // }
+       // }
+
     });
 
     // Click listener for the restaurant submit button
