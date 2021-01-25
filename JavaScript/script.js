@@ -9,9 +9,11 @@ $(document).ready(function() {
         localStorage.setItem("recipeIdArray", JSON.stringify([]));
     }
 
-    // Instances a variable to contain the current meal id
+    // Instances a variable to contain the current meal id and meal name
     var mealID = "";
     var mealName = "";
+    var image= "";
+    var instruction ="";
 
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
@@ -19,6 +21,9 @@ $(document).ready(function() {
         // Sets the meal id into the mealID variable
         mealID = meal.idMeal;
         mealName= meal.strMeal;
+        image = meal.strMealThumb;
+        instruction = meal.strInstructions;
+
 
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
@@ -340,7 +345,9 @@ console.log("hello")
             //if (parsedArray[i].id !== mealID) {
       var newRecipe = {
           id: mealID,
-          name: mealName
+          name: mealName,
+          image: image,
+          instruction: instruction
       }
       console.log(mealID)
                 // Pushes the current id into the array
