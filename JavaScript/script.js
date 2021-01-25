@@ -9,21 +9,16 @@ $(document).ready(function() {
         localStorage.setItem("recipeIdArray", JSON.stringify([]));
     }
 
-    // Instances a variable to contain the current meal id and meal name
+    // Instances two variables to contain the current meal id and meal name
     var mealID = "";
     var mealName = "";
-    var image= "";
-    var instruction ="";
 
     // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
     function renderMealCard(meal) {
 
-        // Sets the meal id into the mealID variable
+        // Sets mealID and mealName to for the current meal's info
         mealID = meal.idMeal;
         mealName= meal.strMeal;
-        image = meal.strMealThumb;
-        instruction = meal.strInstructions;
-
 
         // Sets the recipe title, image, and instructions to their proper elements
         $("#recipe-title").text(meal.strMeal);
@@ -123,8 +118,8 @@ $(document).ready(function() {
         // Sets an index to be used for the ingredientArray
         var index = 0;
 
-        // Instances a variable which will be used later
-        var ingredientEl = "";
+        // Instances an array which will be used later
+        var ingredientEl = [];
         
         // A while-loop that checks whether there is an ingredient at index 
         while (ingredientArray[index] != " ") {
@@ -238,8 +233,6 @@ $(document).ready(function() {
             var imageLink = restaurant.featured_image;
             var zomatoLink = restaurant.url;
             //=============================================================
-
-            console.log(imageLink);
 
             var priceDollarSign = "";
 
@@ -378,31 +371,24 @@ $(document).ready(function() {
 
     // Click listener for the save recipe button
     $("#save-recipe").on("click", function () {
-console.log("hello")
+
         // Gets the recipe id array from localStorage
         var recipeIdArray = localStorage.getItem("recipeIdArray") || "[]";
         var parsedArray = JSON.parse(recipeIdArray);
 
-        // Checks whether the id array already has the current meal id
-        // Runs if false
+        // for (var i = 0; i < parsedArray.length; i++) {
+        //     if (parsedArray[i].id !== mealID) {
+        var newRecipe = {
+            id: mealID,
+            name: mealName,
+        }
 
-        //for (var i = 0; i < parsedArray.length; i++) {
-            //if (parsedArray[i].id !== mealID) {
-      var newRecipe = {
-          id: mealID,
-          name: mealName,
-          image: image,
-          instruction: instruction
-      }
-      console.log(mealID)
-                // Pushes the current id into the array
-                parsedArray.push(newRecipe);
+        // Pushes the current recipe into the array
+        parsedArray.push(newRecipe);
 
-                // Sets the altered array back into local storage
-                var stringifiedArray = JSON.stringify(parsedArray);
-                localStorage.setItem("recipeIdArray", stringifiedArray);
-           // }
-       // }
+        // Sets the altered array back into local storage
+        var stringifiedArray = JSON.stringify(parsedArray);
+        localStorage.setItem("recipeIdArray", stringifiedArray);
 
     });
 
