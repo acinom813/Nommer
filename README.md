@@ -4,25 +4,26 @@ UNC Bootcamp group project
 
 ### Assignment:
 
-Working as team, build a web application from scratch using at least two server-side APIs and execute a design that solves a real-world problem by integratiing data recieved from the APIs. 
+Working as a team, build a web application from scratch using at least two server-side APIs and execute a design that solves a real-world problem by integratiing data recieved from the APIs. 
 
 ### User Story:
 
 AS A hungry person who doesn't know what to eat and doesn't like making decisions
 
-I WANT to generate a random recipe and restaurant 
+I WANT to generate a random recipe or restaurant 
 
 SO THAT I can choose whether to cook that recipe or eat out at the restaurant to satiate my hunger
 
 ### Deployed Link:
 
-https://acinom813.github.io/Project-1/index.html
+https://acinom813.github.io/Nommer/
 
 ### Screenshots of Webpage: 
 
-![Nommer](/assets/images/)
+![Nommer](/Assets/images/screenshot.PNG)
 
 ### Credits
 
 https://www.themealdb.com/api.php
+
 https://developers.zomato.com/api
