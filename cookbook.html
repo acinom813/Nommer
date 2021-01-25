@@ -47,7 +47,7 @@
     <div class="container mt-2">
       <div class="row">
         <div class="col-md-6">
-          <div class="recipe card">
+          <div class="saved-card card">
             <div class="card-body">
               <h5 class="card-title">Saved Recipes</h5>
        
@@ -65,9 +65,19 @@
         <!--Information for selected recipe card to view-->
      
           <div class="col-md-6">
-            <div class=" new-recipe text-center">
-              
-          
+            <div class="saved-card card text-center">
+              <div class="card-body">
+                <h5 id="recipe-title" class="card-title"></h5>
+                <img id="meal-image" alt="Food" class="image">
+                <p id="recipe-instructions" class="card-text"></p>
+                
+                <div class="card-header">
+                  Ingredients
+                </div>
+                <ul id="ingredients-list" class="list-group list-group-flush">
+                </ul>
+                <a id="recipe-link-button" target="_blank" class="btn btn-primary">Recipe Source</a>
+              </div>
             </div>
     
          </div>

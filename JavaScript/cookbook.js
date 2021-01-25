@@ -1,71 +1,154 @@
 $(document).ready(function () {
 
+    // Gets the recipeIdArray from local storage as a global variable
+    var recipeIdArray = localStorage.getItem("recipeIdArray");
+    var parsedArray = JSON.parse(recipeIdArray);
+
+    // Function to dynamically create the list of recipes
     function renderCookbookList() {
-        var recipeIdArray = localStorage.getItem("recipeIdArray");
-        var parsedArray = JSON.parse(recipeIdArray);
-        console.log(parsedArray);
+
         for (let index = 0; index < parsedArray.length; index++) {
-            console.log(parsedArray[index], "index")
+
             var name = parsedArray[index].name;
-            var id = parsedArray[index].id;
-            var newItem = $("<li>").addClass("list-group-item");
+
+            var newItem = $("<button>").addClass("list-group-item");
+
             newItem.text(name);
-            newItem.attr("data-id", id)
+
+            newItem.attr("data-index", index);
 
             $("#saved-recipes").append(newItem);
-
-
         };
-
-        $(".list-group-item").on("click", function () {
-            var recipeIdArray = localStorage.getItem("recipeIdArray");
-            var parsedArray = JSON.parse(recipeIdArray);
-
-
-            var id = $(this).attr("data-id")
-
-            for (let index = 0; index < parsedArray.length; index++) {
-
-                 if(id === parsedArray[index].id){
-                    var card = `
-                    <div class="card">
-                        <div class="card-body ">
-        
-        
-                        <h5 id="recipe-title" class="card-title"> ${parsedArray[index].name} </h5>
-                        <img id="meal-image" src="${parsedArray[index].image}" alt="Food" class="image">
-                        <p id="recipe-instructions" class="card-text">${parsedArray[index].instruction} </p>
-                        
-                        <div class="card-header">
-                          Ingredients
-                        </div>
-                        <ul id="ingredients-list" class="list-group list-group-flush">
-                        </ul>
-                        <a id="recipe-link-button" target="_blank" class="btn btn-primary">Recipe Source</a>-->
-                      </div>
-                    </div>  
-                    `
-                    $(".new-recipe").html(card);
-                 }
-             
-
-            }
-
-        })
     }
 
     renderCookbookList();
 
-    function renderMealCard(foundMeal) {
-        console.log(foundMeal);
-        // console.log(parsedArray[index].name);
-        // var name = parsedArray[index].name;
-        // var id = parsedArray[index].id;
-        // var newItem = $("<li>").addClass("list-group-item");
-        // newItem.text(name);
-        // newItem.attr("data-id", id)
-        // $("#saved-recipes").append(newItem);
+    // A function to dynamically update the recipe card which takes a TheMealDB API object as a parameter
+    function renderMealCard(meal) {
 
+        // Sets mealID and mealName to for the current meal's info
+        mealID = meal.idMeal;
+        mealName= meal.strMeal;
+
+        // Sets the recipe title, image, and instructions to their proper elements
+        $("#recipe-title").text(meal.strMeal);
+
+        $("#meal-image").attr("src", meal.strMealThumb);
+
+        $("#recipe-instructions").text(meal.strInstructions);
+
+        //==============================================================================
+        // This creates an array containing all of the ingredients with the respective measurements
+        var ingredientArray = [];
+
+        var ingredient = meal.strMeasure1.trim() + " " + meal.strIngredient1.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure2.trim() + " " + meal.strIngredient2.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure3.trim() + " " + meal.strIngredient3.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure4.trim() + " " + meal.strIngredient4.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure5.trim() + " " + meal.strIngredient5.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure6.trim() + " " + meal.strIngredient6.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure7.trim() + " " + meal.strIngredient7.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure8.trim() + " " + meal.strIngredient8.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure9.trim() + " " + meal.strIngredient9.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure10.trim() + " " + meal.strIngredient10.trim();
+
+        ingredientArray.push(ingredient);
+
+        ingredient = meal.strMeasure11.trim() + " " + meal.strIngredient11.trim();
+
+        ingredientArray.push(ingredient);
+        
+        ingredient = meal.strMeasure12.trim() + " " + meal.strIngredient12.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure13.trim() + " " + meal.strIngredient13.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure14.trim() + " " + meal.strIngredient14.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure15.trim() + " " + meal.strIngredient15.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure16.trim() + " " + meal.strIngredient16.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure17.trim() + " " + meal.strIngredient17.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure18.trim() + " " + meal.strIngredient18.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure19.trim() + " " + meal.strIngredient19.trim();
+
+        ingredientArray.push(ingredient);
+                
+        ingredient = meal.strMeasure20.trim() + " " + meal.strIngredient20.trim();
+
+        ingredientArray.push(ingredient);
+        //==============================================================================
+
+        // Empties the ingredient list
+        $("#ingredients-list").empty();
+
+        // Sets an index to be used for the ingredientArray
+        var index = 0;
+
+        // Instances an array which will be used later
+        var ingredientEl = [];
+        
+        // A while-loop that checks whether there is an ingredient at index 
+        while (ingredientArray[index] != " ") {
+
+            // Sets the instanced variable from earlier to a new jQuery object
+            ingredientEl = $("<li>").addClass("list-group-item");
+
+            // Sets the text of the jQuery object to the ingredient at index
+            ingredientEl.text(ingredientArray[index]);
+
+            // Appends the jQuery object to the ingredient list
+            $("#ingredients-list").append(ingredientEl);
+
+            // Increases index by 1
+            index++;
+        }
+
+        // Sets the link into the source button
+        $("#recipe-link-button").attr("href", meal.strSource);
     }
 
     // Function that performs an ajax call to get a meal based on an ID
@@ -82,27 +165,20 @@ $(document).ready(function () {
 
             // Gets the meal out of the returned array
             var foundMeal = response.meals[0];
-            console.log(response, "response");
+            
             // Runs the renderMealCard() method with the meal
             renderMealCard(foundMeal);
         });
     }
-    /*Function will render the selcted saved recipe
-    function selectedRecipeCard (meal) {
-        
-    //Selected recipe will return recipe title, meal-image, and recipe-instructions
-    
-            $("#recipe-title").text(meal.strMeal);
-    
-            $("#meal-image").attr("src", meal.strMealThumb);
-    
-            $("#recipe-instructions").text(meal.strInstructions);
-    
-    }
-    
-    $("#saved-recipes").on("click", "li", function(event) {
-        console.log(this.text);*/
+
+    $("#saved-recipes").on("click", ".list-group-item", function() {
+
+        var recipeIndex = $(this).attr("data-index");
+
+        var recipe = parsedArray[recipeIndex];
+
+        getMealByID(recipe.id);
+    });
+
+    getMealByID(parsedArray[0].id);
 });
-
-
-
