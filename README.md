@@ -4,7 +4,7 @@ UNC Bootcamp group project
 
 ### Assignment:
 
-Working as a team, build a web application from scratch using at least two server-side APIs and execute a design that solves a real-world problem by integratiing data recieved from the APIs. 
+Working as a team, build a web application from scratch using at least two server-side APIs and execute a design that solves a real-world problem by integrating data recieved from the APIs. 
 
 ### User Story:
 
